@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+{
+
+    int pessoas[10005];
+
+    memset(pessoas,0,sizeof(pessoas));
+    int nc, i, j, l, m, vivo;
+
+    scanf("%d", &nc);
+
+    for(i = 1; i <= nc; i++) 
+    {
+    	int n, k, count = 0, ultimo = n;
+    	scanf("%d %d", &n, &k);
+
+    	for(j = 1; j <= n; j++)
+    	{
+    		pessoas[j] = 1;
+    	}
+
+    	l = k;
+
+    	while(count != n-1)
+    	{
+    		if (pessoas[l] == 0)
+    		{
+    			if(l != k)
+        			l++;
+    		}
+
+    		if(pessoas[l] == 1)
+    		{
+    			pessoas[l] = 0;
+    			count++;
+    		}
+
+    		l = l + k;
+
+    		if (l > ultimo)
+    		{
+    			for(j = 0; j<n; j++)
+    			{
+    				if(pessoas[j] == 1)
+    					ultimo = j;
+    			}
+
+    			l = l - ultimo;
+    		}
+    	}
+
+    	for(m = 0; m <= n; m++)
+    	{
+    		if(pessoas[m] == 1)
+    		{
+    			vivo = m;
+    		}
+    	}
+
+    	printf("Case %d: %d\n", i, vivo);
+    	
+    }
+    return 0;
+}
